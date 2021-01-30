@@ -6,7 +6,7 @@ class PreProcess():
     def __init__(
         self,
         location='',
-        time=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+        time=time.strftime("%Y%m%d_%H%M%S", time.localtime()),
         image_path="",
     ):
         self._location = location
@@ -19,8 +19,8 @@ class PreProcess():
             'time':self._time,
             'path':self._image_path
         }
-        np.save('{}-{}.npy'.format(self._location, self._time), dictionary)
+        np.save('{}_{}.npy'.format(self._location, self._time), dictionary)
 
-save = PreProcess('city',image_path='./here/test.jpg')
+save = PreProcess('test',image_path='./data/images/6_9_modified_2.jpg')
 save.save()
     

@@ -1,4 +1,4 @@
-from crowdcounting import Router
+from crowdcounting.api.model_crowdcount import Router
 
 class CrowdCounter():
 
