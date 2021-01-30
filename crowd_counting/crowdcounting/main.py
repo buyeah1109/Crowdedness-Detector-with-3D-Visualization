@@ -25,7 +25,7 @@ from application.picture_lib import fetch
 # imshow(density_map)
 # plt.show()
 
-filelist = fetch('test', '')
+filelist = fetch('test', '20210130_1546')
 
 for pic_info in filelist:
 
