@@ -31,26 +31,46 @@ mcnn_path = 'data/models/mcnn_shtechA_660.h5'
 detector = CrowdednessDetector(_radius = 100, _area = 100)
 counter = CrowdCounter(_mcnnmodelpath=mcnn_path, _gpuID= gpu_id)
 
-filelist = fetch('test', '20210130_200051')
+picpath = fetch('test', '20210130_154520')
+pic_info = np.load(picpath, allow_pickle=True)
+img_path = pic_info.item().get('path')
 
-for picpath in filelist:
+t = time.time()
+with open(img_path, 'rb') as image:
+     b = image.read()
+cnt_detector, density_map = detector.count_density_map(b)
+cnt_dual = counter.count(b)
+cr = detector.get_crowdedness(density_map, cnt_dual)
 
-     pic_info = np.load(picpath, allow_pickle=True)
-     img_path = pic_info.item().get('path')
+pic_info.item()['cnt'] = cnt_dual
+pic_info.item()['cr'] = cr
+np.save(picpath, pic_info.item())
 
-     t = time.time()
-     with open(img_path, 'rb') as image:
-          b = image.read()
-     cnt_detector, density_map = detector.count_density_map(b)
-     cnt_dual = counter.count(b)
-     cr = detector.get_crowdedness(density_map, cnt_dual)
+print(pic_info.item().get('path'))
+print("Dual Model Prediction: {}, Single Pred: {}, Crowdedness: {}".format(cnt_dual, cnt_detector, cr))
+print("Done, used {} time.".format(round(time.time() - t)))
 
-     pic_info.item()['cnt'] = cnt_dual
-     pic_info.item()['cr'] = cr
-     np.save(picpath, pic_info.item())
 
-     print(pic_info.item().get('path'))
-     print("Dual Model Prediction: {}, Single Pred: {}, Crowdedness: {}".format(cnt_dual, cnt_detector, cr))
-     print("Done, used {} time.".format(round(time.time() - t)))
-     # imshow(density_map)
-     # plt.show()
+# filelist = fetchAll('test', '')
+
+# for picpath in filelist:
+
+#      pic_info = np.load(picpath, allow_pickle=True)
+#      img_path = pic_info.item().get('path')
+
+#      t = time.time()
+#      with open(img_path, 'rb') as image:
+#           b = image.read()
+#      cnt_detector, density_map = detector.count_density_map(b)
+#      cnt_dual = counter.count(b)
+#      cr = detector.get_crowdedness(density_map, cnt_dual)
+
+#      pic_info.item()['cnt'] = cnt_dual
+#      pic_info.item()['cr'] = cr
+#      np.save(picpath, pic_info.item())
+
+#      print(pic_info.item().get('path'))
+#      print("Dual Model Prediction: {}, Single Pred: {}, Crowdedness: {}".format(cnt_dual, cnt_detector, cr))
+#      print("Done, used {} time.".format(round(time.time() - t)))
+#      # imshow(density_map)
+#      # plt.show()
