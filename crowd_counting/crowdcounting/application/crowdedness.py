@@ -55,8 +55,7 @@ class CrowdednessDetector():
         self.count = cnt
         return cnt, density_img
 
-    def get_crowdedness(self, density_img):
-        n = self.count
+    def get_crowdedness(self, density_img, n):
         area = self.area
         h, w = density_img.shape[:2]
         cnt = 0
