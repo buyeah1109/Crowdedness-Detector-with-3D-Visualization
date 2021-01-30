@@ -26,7 +26,8 @@ from application.picture_lib import fetch
 # plt.show()
 
 filelist = fetch('test', '20210130_1546')
-
+detector = CrowdednessDetector(_radius = 100, _area = 100)
+counter = CrowdCounter(_mcnnmodelpath=mcnn_path, _gpuID= gpu_id)
 for pic_info in filelist:
 
      img_path = pic_info.item().get('path')
@@ -37,9 +38,6 @@ for pic_info in filelist:
      mcnn_path = 'data/models/mcnn_shtechA_660.h5'
      with open(img_path, 'rb') as image:
           b = image.read()
-     detector = CrowdednessDetector(_radius = 100, _area = 100)
-     counter = CrowdCounter(_mcnnmodelpath=mcnn_path, _gpuID= gpu_id)
-
      cnt_detector, density_map = detector.count_density_map(b)
      cnt_dual = counter.count(b)
      cr = detector.get_crowdedness(density_map, cnt_dual)
