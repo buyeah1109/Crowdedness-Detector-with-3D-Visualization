@@ -59,11 +59,14 @@ class CrowdednessDetector():
         area = self.area
         h, w = density_img.shape[:2]
         cnt = 0
-        for r in range(h):
-            for c in range(w):
-                b, g, r = density_img[r][c][:]
-                if (b/3 + g/3 + r/3) == 0:
-                    cnt = cnt + 1
+        # for r in range(h):
+        #     for c in range(w):
+        #         b, g, r = density_img[r][c][:]
+        #         if b/3 + g/3 + r/3 == 0:
+        #             cnt = cnt + 1
+        # cnt = h * w - cnt
+        sum3 = np.sum(density_img)
+        cnt = sum3 / (3*255)
         den = n / area
         clus = w * h / cnt
         cr = den * clus
