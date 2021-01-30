@@ -1,23 +1,64 @@
 
-# Crowd counting
+# A Computer Vision Dual-model Crowd Counting, Locating and Crowdedness Computation Software
 
-This repository provides production ready version of crowd counting algorithms. The different algorithms are unified under a set of consistent APIs. 
+This repository provides a software prototype that contains front-end and back-end implementation in a very-beginning stage. This software is built for crowd counting, locating and computing crowdedness. The data will then be projected to pre-built 3D model for visualization
 
 ## At a glance
 [![Figure 1][pic 1]][pic 1]
 
-Note: All sample images for the crowd counting scenario are from www.unsplash.com.
+Note: All the image for demo are from www.unsplash.com and [ShanghaiTech A dataset](https://github.com/desenzhou/ShanghaiTechDataset).
 
-While there's a wide range of crowd counting models, two practical matters need to be accounted for:
-- Speed. To support near real time reporting, the model should run fast enough. 
-- Crowd density. We need to allow for both high-density and low-density scenarios for the same camera. Most crowd counting models were trained using high density datasets and they tend not to work well for low density scenarios. On the other hand, models like Faster-RCNN work well for low density crowd but not so much for high density scenarios. 
+Our Application is boosted up by well-known opensource computer vision best practice repository [computervision_recipes](https://github.com/microsoft/computervision-recipes) from Microsoft. We used some consistent APIs to build parts of backend modules that are able to detect and count crowd. Then we applied our self-designed algorithm to compute crowdedness.
 
-Based on evaluation of multiple implementations of Crowd Counting models on our propietary dataset, we narrowed down the models to two options: the Multi Column CNN model (MCNN) from [this repo](https://github.com/svishwa/crowdcount-mcnn) and the OpenPose model from [this repo](https://github.com/ildoonet/tf-pose-estimation). Both models met our speed requirements. 
-- For high density crowd images, the MCNN model delivered good results. 
-- For low density scenarios, OpenPose performed well. 
-- When crowd density if unknown beforehand, we use a heuristic approach: the prediction from MCNN is used if the following conditions are met: OpenPose prediction is above 20 and MCNN is above 50. Otherwise, the OpenPose prediction used. The thresholds for the models can be changed depending on your scenario.
+## Dual Model
 
-[pic 1]: media/obs_vs_pred.PNG
+We adopted two model in this application and they are Multi-Column Convolutional Neural Network (MCNN, [Paper Here]()) and OpenPose Model.
+
+The reasons we select these two model are that they both achieve high-speed performance requirement, and MCNN is suitable for high-density while OpenPose performs well in low-density scenarios. Thus, this dual-model could handle general scenarios by deciding which model to be used. For more information, please refer to Microsoft repository we posted above and there is more detail about model selection.
+
+[pic 1]: media/glance.PNG
+
+## Crowdedness Computation
+
+There is few implementation on crowdedness computation. Thus, we designed an algorithm to satisfy this requirement.
+
+[![Figure 2][pic 2]][pic 2]
+
+This algorithm computes an index which could indicates crowdedness in scenarios that crowd is dense or not dense but tend to form clusters (the distribution is within a small area). In general, it is related with social distance.
+
+For example, following two crowd distribution map (preprocessed) should both be considered as 'crowded', a good crowdedness computation algorithm should output a similar index.
+
+Figure 1: 10 people form two group (Low Density, tend to form cluster)
+
+[![Figure 3][pic 3]][pic 3]
+
+Figure 2: 15 people average distributed (Higher density, not tend to form cluster)
+
+[![Figure 4][pic 4]][pic 4]
+
+Diffence between Figure 1 & 2:
+
+1. in traditional density approach: 50%
+
+2. in our crowdedness index: 3.16%
+
+Figure 3: 10 people average distributed
+
+[![Figure 4][pic 5]][pic 5]
+
+Difference between Figure 1 & 3
+
+1. in traditional approach: 0%
+2. in our approach: 31.2%
+
+Which indicates that our algorithm is much better than common density approach, for traditional mean central distance approach, it could not differenciate clustering tendency as well.
+
+[pic 2]: media/equation.png
+[pic 3]: crowdcounting/data/images/den1.png
+[pic 4]: crowdcounting/data/images/den2.png
+[pic 5]: crowdcounting/data/images/den3.png
+
+
 
 ## Setup
 ### Dependencies
