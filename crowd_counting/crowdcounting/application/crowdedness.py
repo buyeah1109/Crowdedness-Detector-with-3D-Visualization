@@ -39,15 +39,25 @@ class CrowdednessDetector():
         cnt = 0
         coor_x = []
         coor_y = []
+        body_part = []
         for human in humans:
-            if not human.body_parts.keys().__contains__(0):
-                if not human.body_parts.keys().__contains__(5):
-                    if not human.body_parts.keys().__contains__(8):
-                        if not human.body_parts.keys().__contains__(11):
-                            continue
+            if human.body_parts.keys().__contains__(0):
+                body_part.append(human.body_parts[0])
+            if human.body_parts.keys().__contains__(5):
+                body_part.append(human.body_parts[5])
+            if human.body_parts.keys().__contains__(8):
+                body_part.append(human.body_parts[8])
+            if human.body_parts.keys().__contains__(11):
+                body_part.append(human.body_parts[11])
+            if len(body_part) == 0:
+                continue
             cnt = cnt + 1
-            body_part = human.body_parts[0]
-            center = (int(body_part.x * image_w + 0.5), int(body_part.y * image_h + 0.5))
+            avgx = 0
+            avgy = 0
+            for part in body_part:
+                avgx = avgx + part.x
+                avgy = avgy + part.y
+            center = (int((avgx / len(body_part)) * image_w + 0.5), int((avgy / len(body_part)) * image_h + 0.5))
             coor_x.append(center[0])
             coor_y.append(center[1])
         self.save_centroids(coor_x, coor_y)
