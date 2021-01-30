@@ -22,16 +22,12 @@ def data():
     query = request.query_string
     s = query.decode("utf-8")
 
-    if 'festival' in s:
-        return ""
-    elif 'count' in s:
-        count = 50
-        index = 0.5
-        data = [{'location': "Festival walk", 'time': "15:00", 'count': count, 'crowded': index}]
-        jsonData = json.dumps(data[0])
-        return jsonData
-    else:
-        return ""
+    floor = request.args.get('floor')
+    mall = request.args.get('mall')
+    section = request.args.get('section')
+
+    
+    return 0
 
 
 if __name__ == '__main__':
