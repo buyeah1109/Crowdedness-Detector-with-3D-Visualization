@@ -16,7 +16,7 @@ We adopted two model in this application and they are Multi-Column Convolutional
 
 The reasons we select these two model are that they both achieve high-speed performance requirement, and MCNN is suitable for high-density while OpenPose performs well in low-density scenarios. Thus, this dual-model could handle general scenarios by deciding which model to be used. For more information, please refer to Microsoft repository we posted above and there is more detail about model selection.
 
-[pic 1]: media/glance.PNG
+[pic 1]: media/glance.png
 
 ## Crowdedness Computation
 

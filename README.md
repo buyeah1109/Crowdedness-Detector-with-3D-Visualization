@@ -16,7 +16,7 @@ We adopted two model in this application and they are Multi-Column Convolutional
 
 The reasons we select these two model are that they both achieve high-speed performance requirement, and MCNN is suitable for high-density while OpenPose performs well in low-density scenarios. Thus, this dual-model could handle general scenarios by deciding which model to be used. For more information, please refer to Microsoft repository we posted above and there is more detail about model selection.
 
-[pic 1]: media/glance.PNG
+[pic 1]: crowd_counting/media/glance.PNG
 
 ## Crowdedness Computation
 
@@ -53,10 +53,10 @@ Difference between Figure 1 & 3
 
 Which indicates that our algorithm is much better than common density approach, for traditional mean central distance approach, it could not differenciate clustering tendency as well.
 
-[pic 2]: media/equation.png
-[pic 3]: crowdcounting/data/images/den1.png
-[pic 4]: crowdcounting/data/images/den2.png
-[pic 5]: crowdcounting/data/images/den3.png
+[pic 2]: crowd_counting/media/equation.png
+[pic 3]: crowd_counting/crowdcounting/data/images/den1.png
+[pic 4]: crowd_counting/crowdcounting/data/images/den2.png
+[pic 5]: crowd_counting/crowdcounting/data/images/den3.png
 
 
 
