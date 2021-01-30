@@ -43,8 +43,8 @@ for pic_info in filelist:
      cnt_detector, density_map = detector.count_density_map(b)
      cnt_dual = counter.count(b)
      cr = detector.get_crowdedness(density_map, cnt_dual)
-     print(pic_info.item().get('loc'))
-     print(pic_info.item().get('time'))
+
+     print(pic_info.item().get('path'))
      print("Dual Model Prediction: {}, Single Pred: {}, Crowdedness: {}".format(cnt_dual, cnt_detector, cr))
      print("Done, used {} time.".format(round(time.time() - t)))
      # imshow(density_map)
