@@ -11,11 +11,9 @@ class CrowdednessDetector():
     
     def __init__(
         self,
-        _image,
         _area,
         _radius = DEFAULT_RADIUS,
     ):
-        self.image = _image
         self.radius = _radius
         self.area  = _area
         self.centroids_x = []
@@ -25,13 +23,11 @@ class CrowdednessDetector():
     # return count of people, 
     # density map 
     # with given image and radius/social distance
-    def count_density_map(self):
-        _input_img = self.image
+    def count_density_map(self, _input_img):
         _radius = self.radius
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
         config.allow_soft_placement = True
-        config.log_device_placement = True
         model = "cmu"
         resize = "656x368"
         w, h = model_wh(resize)

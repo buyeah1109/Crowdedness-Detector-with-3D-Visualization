@@ -154,7 +154,6 @@ class CrowdCountModelPose(CrowdCounting):
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
         config.allow_soft_placement = True
-        config.log_device_placement = True
         model = "cmu"
         resize = "656x368"
         self._w, self._h = model_wh(resize)
