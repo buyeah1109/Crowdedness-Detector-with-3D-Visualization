@@ -23,7 +23,7 @@ def fetch(loc, time):
                     if pic_info.item().get('time')[0:timelength] == time:
                         img = Image.open(pic_info.item().get('path'))
                         filelist.append(pic_info)
-                        img.show()
+                        # img.show()
     
     if not filelist:
         print('NO RESULTS FOUNG')
