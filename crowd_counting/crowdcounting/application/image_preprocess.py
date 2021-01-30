@@ -6,21 +6,24 @@ class PreProcess():
     def __init__(
         self,
         location='',
-        time=time.strftime("%Y%m%d_%H%M%S", time.localtime()),
+        floor='',
+        section='',
         image_path="",
     ):
         self._location = location
-        self._time = time
+        self._floor = floor
+        self._section = section
         self._image_path = image_path
     
     def save(self):
         dictionary = {
             'loc':self._location,
-            'time':self._time,
+            'floor':self._floor,
+            'section':self._section,
             'path':self._image_path
         }
-        np.save('{}_{}.npy'.format(self._location, self._time), dictionary)
+        np.save('{}_{}_{}.npy'.format(self._location, self._floor, self._section), dictionary)
 
-save = PreProcess('test',image_path='./data/images/6_50.jpg')
+save = PreProcess('festivalwalk', '6', '2', image_path='./data/images/6_60.jpg')
 save.save()
     
