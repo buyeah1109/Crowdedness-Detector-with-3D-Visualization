@@ -40,8 +40,11 @@ class CrowdednessDetector():
         coor_x = []
         coor_y = []
         for human in humans:
-            if 0 not in human.body_parts.keys():
-                continue
+            if not human.body_parts.keys().__contains__(0):
+                if not human.body_parts.keys().__contains__(5):
+                    if not human.body_parts.keys().__contains__(8):
+                        if not human.body_parts.keys().__contains__(11):
+                            continue
             cnt = cnt + 1
             body_part = human.body_parts[0]
             center = (int(body_part.x * image_w + 0.5), int(body_part.y * image_h + 0.5))
