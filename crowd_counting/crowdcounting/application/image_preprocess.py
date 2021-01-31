@@ -24,6 +24,6 @@ class PreProcess():
         }
         np.save('{}_{}_{}.npy'.format(self._location, self._floor, self._section), dictionary)
 
-save = PreProcess('festivalwalk', '6', '2', image_path='./data/images/6_60.jpg')
+save = PreProcess('festivalwalk', '6', '5', image_path='./data/images/6_60.jpg')
 save.save()
     
