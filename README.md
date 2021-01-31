@@ -112,7 +112,7 @@ Folder gui_unity/ contains a Unity project for a WebGL graphic interface for vis
 
 Please do notice that currently it only request data from local server. To change the server address, please go to **Line 127** of crowdcount_crowdedness/gui_unity/Assets/Scripts/FestivalWalk.cs
 
-**There's already a built page** under folder crowdcount_crowdedness/gui_unity/Build/. Please do notice that to run Unity WebGL page in browser as local file, you may need to change setting of your browser. Please refer to [this stackoverflow answer](https://stackoverflow.com/a/62517963).
+**There's already a built page** under folder crowdcount_crowdedness/gui_unity/Build/. Please do notice that to run Unity WebGL page in browser as local file, **you may need to change setting of your browser**. Please refer to [this stackoverflow answer](https://stackoverflow.com/a/62517963).
 
 Below is a screenshot of graphic interface:
 
