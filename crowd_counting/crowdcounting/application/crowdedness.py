@@ -39,8 +39,8 @@ class CrowdednessDetector():
         cnt = 0
         coor_x = []
         coor_y = []
-        body_part = []
         for human in humans:
+            body_part = []
             if human.body_parts.keys().__contains__(0):
                 body_part.append(human.body_parts[0])
             if human.body_parts.keys().__contains__(5):

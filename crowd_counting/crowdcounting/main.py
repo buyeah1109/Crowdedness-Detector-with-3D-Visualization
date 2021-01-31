@@ -32,7 +32,7 @@ mcnn_path = 'data/models/mcnn_shtechA_660.h5'
 detector = CrowdednessDetector(_radius = 100, _area = 100)
 counter = CrowdCounter(_mcnnmodelpath=mcnn_path, _gpuID= gpu_id)
 
-picpath = fetch('festivalwalk', '6', '2')
+picpath = fetch('festivalwalk', '3', '1')
 pic_info = np.load(picpath, allow_pickle=True)
 img_path = pic_info.item().get('path')
 
