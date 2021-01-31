@@ -105,3 +105,17 @@ Then type the url 0.0.0.0:5000 in a browser to try the demo.
 
 ## Build Status
 [![Build Status](https://dev.azure.com/team-sharat/crowd-counting/_apis/build/status/lixzhang.cnt?branchName=lixzhang%2Fsubmodule-rev3)](https://dev.azure.com/team-sharat/crowd-counting/_build/latest?definitionId=49&branchName=lixzhang%2Fsubmodule-rev3)
+
+
+## Graphic Interface
+Folder gui_unity/ contains a Unity project for a WebGL graphic interface for visualizing the result with Unity version `2019.4.18f1`.
+
+Please do notice that currently it only request data from local server. To change the server address, please go to **Line 127** of crowdcount_crowdedness/gui_unity/Assets/Scripts/FestivalWalk.cs
+
+**There's already a built page** under folder crowdcount_crowdedness/gui_unity/Build/. Please do notice that to run Unity WebGL page in browser as local file, you may need to change setting of your browser. Please refer to [this stackoverflow answer](https://stackoverflow.com/a/62517963).
+
+Below is a screenshot of graphic interface:
+
+[![Figure 5][pic 6]][pic 6]
+
+[pic 6]: gui_unity/Build/screenshot.png

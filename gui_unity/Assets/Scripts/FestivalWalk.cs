@@ -124,7 +124,7 @@ public class FestivalWalk : MonoBehaviour
 	IEnumerator requestStates(int floor, int section)
 	{
 
-		string URL = "http://144.214.108.231:5000/data?mall=festivalwalk&floor=" + (floor + 1) + "&section=" + (section + 1);
+		string URL = "http://127.0.0.1:5000/data?mall=festivalwalk&floor=" + (floor + 1) + "&section=" + (section + 1);
 
 		UnityWebRequest www = UnityWebRequest.Get(URL);
 		
